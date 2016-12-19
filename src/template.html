@@ -1,0 +1,18 @@
+<div class="vt-pagination">
+    <span class="vt-pagination--total">共 {{total}} 条</span>
+    <select name="" @change="countChange" class="vt-counter" v-model="currentCount">
+        <option v-for="opt in countOptions" :value="opt">{{opt}}条</option>
+    </select>
+    <Buttons @click="selectPrePage" :disabled="currentPager == 1" size="small">上一页</Buttons>
+    <ul class="vt-pager">
+        <li class="vt-number"
+            v-for="page in pages"
+            :class="{ 'vt-number--active': currentPager == page }"
+            @click="selectCurrentPage(page)">{{page}}</li>
+    </ul>
+    <Buttons @click="selectNextPage" :disabled="currentPager == totalPage" size="small">下一页</Buttons>
+    <span class="vt-page--count">共 {{totalPage}} 页</span>
+    <div class="vt-goto">
+        <input class="vt-goto--current" type="text" @keyup.enter="jump" v-model="gotoPage"> 页
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.vt-pagination{
+    white-space: nowrap;
+    padding: 2px 5px;
+    color: #475669;
+}
+
+.vt-pager,
+.vt-number,
+.vt-goto{
+    display: inline-block;
+}
+.vt-goto{
+    margin-left:4px;
+}
+.vt-goto--current{
+    width: 30px;
+    text-align: center;
+    padding:2px;
+    border-radius:5px;
+    outline: none;
+    border:1px solid #d3dce6;
+}
+.vt-pager{
+    user-select: none;
+    list-style: none;
+    font-size: 0;
+    padding: 0;
+}
+.vt-number{
+    padding: 0 4px;
+    border: 1px solid #d3dce6;
+    border-right: 0;
+    background: #fff;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+.vt-number--active{
+    border-color: #20a0ff;
+    background-color: #20a0ff;
+    color: #fff;
+    cursor: default;
+}
