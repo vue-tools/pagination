@@ -1,7 +1,7 @@
-<style src="./style.css" scoped></style>
+<style src="./style.css"></style>
 <template src="./template.html"></template>
 <script>
-    import Buttons from 'button/dist/index.vue'
+    import Buttons from 'vt-button/dist/index.vue'
     export default {
         components: {
             Buttons

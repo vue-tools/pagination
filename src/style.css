@@ -1,18 +1,18 @@
-.vt-pagination{
+.ui-pagination{
     white-space: nowrap;
     padding: 2px 5px;
     color: #475669;
 }
 
-.vt-pager,
-.vt-number,
-.vt-goto{
+.ui-pager,
+.ui-number,
+.ui-goto{
     display: inline-block;
 }
-.vt-goto{
+.ui-goto{
     margin-left:4px;
 }
-.vt-goto--current{
+.ui-goto--current{
     width: 30px;
     text-align: center;
     padding:2px;
@@ -20,13 +20,13 @@
     outline: none;
     border:1px solid #d3dce6;
 }
-.vt-pager{
+.ui-pager{
     user-select: none;
     list-style: none;
     font-size: 0;
     padding: 0;
 }
-.vt-number{
+.ui-number{
     padding: 0 4px;
     border: 1px solid #d3dce6;
     border-right: 0;
@@ -39,7 +39,7 @@
     box-sizing: border-box;
     text-align: center;
 }
-.vt-number--active{
+.ui-number--active{
     border-color: #20a0ff;
     background-color: #20a0ff;
     color: #fff;
