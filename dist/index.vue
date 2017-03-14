@@ -1,7 +1,7 @@
 <style src="./style.css"></style>
 <template src="./template.html"></template>
 <script>
-    import Buttons from 'vt-button/dist/index.vue'
+    import Buttons from 'vt-button'
     export default {
         components: {
             Buttons
@@ -15,44 +15,47 @@
                 type: [Number, String],
                 default: 50
             },
-            visibleCount: {
+            pageCount: { // 页码显示展示个数
                 type: [Number, String],
                 default: 5
             },
             currentPage: { // 当前页面
                 type: [Number, String],
                 default: 1
+            },
+            countOptions: { // 每页条数配置
+                type: Array,
+                default: [10, 20, 50, 100]
             }
         },
         data(){
             return {
-                currentPager: this.currentPage,
-                gotoPage: this.currentPage,
-                countOptions: [10, 20, 50, 100],
-                currentCount: 10
+                activePage: this.currentPage,
+                pageNumber: this.pageCount
             }
         },
         computed: {
             totalPage(){
-                return Math.ceil(this.total / this.currentCount)
+                return Math.ceil(this.total / this.pageNumber)
             },
             pages(){
-                let start, i, pages, visibleCount
+                let start, i, pages, pageCount
                 i = 0
                 pages = []
-                visibleCount = this.visibleCount
-                if(this.total < visibleCount) {
-                    visibleCount = this.total
+                pageCount = this.pageCount
+                /* istanbul ignore if */
+                if(this.total < pageCount) {
+                    pageCount = this.total
                     start = 1
                 } else {
-                    if(this.currentPager % visibleCount) {
-                        start = Math.floor(this.currentPager / visibleCount) * visibleCount + 1
+                    if(this.activePage % pageCount) {
+                        start = Math.floor(this.activePage / pageCount) * pageCount + 1
                     } else {
-                        start = this.currentPager - visibleCount + 1
+                        start = this.activePage - pageCount + 1
                     }
 
                 }
-                while(i < visibleCount) {
+                while(i < pageCount) {
                     pages[i] = start + i
                     i++
                 }
@@ -61,29 +64,28 @@
         },
         methods: {
             selectCurrentPage(page){
-                this.$emit('current-change', page, this.currentPager)
-                this.currentPager = page
+                if(page > this.totalPage) {
+                    page = this.totalPage
+                } else if(page < 1){
+                    page = 1
+                }
+                this.$emit('current-change', page, this.activePage)
+                this.activePage = page
             },
             selectNextPage(){
-                this.$emit('current-change', this.currentPager + 1, this.currentPager)
-                this.currentPager++
+                this.selectCurrentPage(this.activePage + 1)
             },
             selectPrePage(){
-                this.$emit('current-change', this.currentPager - 1, this.currentPager)
-                this.currentPager--
+                this.selectCurrentPage(this.activePage - 1)
             },
             countChange(){
-                this.currentPager = 1
-                this.$emit('count-change', this.currentCount)
+                /* istanbul ignore next */
+                this.activePage = 1
+                this.$emit('count-change', this.pageNumber)
             },
             jump(){
-                if(this.gotoPage > this.totalPage) {
-                    this.gotoPage = this.totalPage
-                } else if(this.gotoPage < 1){
-                    this.gotoPage = 1
-                }
-                this.$emit('current-change', this.gotoPage, this.currentPager)
-                this.currentPager = this.gotoPage
+                /* istanbul ignore next */
+                this.selectCurrentPage(this.activePage)
             }
         }
     }
