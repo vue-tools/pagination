@@ -8,30 +8,33 @@
         },
         props: {
             total: { // 总页数
-                type: [Number, String],
+                type: Number,
                 required: true
             },
             count: { // 每页条数
-                type: [Number, String],
+                type: Number,
                 default: 50
             },
             pageCount: { // 页码显示展示个数
-                type: [Number, String],
-                default: 5
+                type: Number,
+                default: 10
             },
             currentPage: { // 当前页面
-                type: [Number, String],
+                type: Number,
                 default: 1
             },
             countOptions: { // 每页条数配置
                 type: Array,
-                default: [10, 20, 50, 100]
+                default: function(){
+                    return [10, 20, 50, 100]
+                }
             }
         },
         data(){
             return {
                 activePage: this.currentPage,
-                pageNumber: this.pageCount
+                pageNumber: this.pageCount,
+                jumpNumber: this.currentPage
             }
         },
         computed: {
@@ -70,7 +73,7 @@
                     page = 1
                 }
                 this.$emit('current-change', page, this.activePage)
-                this.activePage = page
+                this._syncPage(page)
             },
             selectNextPage(){
                 this.selectCurrentPage(this.activePage + 1)
@@ -79,13 +82,17 @@
                 this.selectCurrentPage(this.activePage - 1)
             },
             countChange(){
-                /* istanbul ignore next */
-                this.activePage = 1
+                this._syncPage(1)
                 this.$emit('count-change', this.pageNumber)
             },
             jump(){
                 /* istanbul ignore next */
-                this.selectCurrentPage(this.activePage)
+                this.selectCurrentPage(this.jumpNumber)
+            },
+            _syncPage(page){
+                 /* istanbul ignore next */
+                this.activePage = page
+                this.jumpNumber = page
             }
         }
     }

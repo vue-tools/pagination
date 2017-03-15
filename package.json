@@ -1,6 +1,6 @@
 {
   "name": "vt-pagination",
-  "version": "1.0.1",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
     "url": "https://github.com/vue-tools/vt-pagination"
@@ -65,7 +65,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "scripts": {
-    "prepublish": "npm run compile",
+    "prepublish": "npm run test && npm run compile",
     "codecov": "./node_modules/.bin/codecov",
     "copy": "rm -fr dist && cp -rf src dist",
     "compile": "npm run copy && node_modules/.bin/babel dist -d dist",

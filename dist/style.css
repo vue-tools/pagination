@@ -39,6 +39,9 @@
     box-sizing: border-box;
     text-align: center;
 }
+.ui-number:last-child{
+    border-right: 1px solid #d3dce6;
+}
 .ui-number--active{
     border-color: #20a0ff;
     background-color: #20a0ff;

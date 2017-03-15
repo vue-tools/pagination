@@ -1,6 +1,6 @@
 <div class="ui-pagination">
     <span class="ui-pagination--total">共 {{total}} 条</span>
-    <select name="" @change="countChange" class="ui-counter" v-model="pageNumber">
+    <select name="" @change="countChange" class="ui-counter" v-model.number="pageNumber">
         <option v-for="opt in countOptions" :value="opt">{{opt}}条</option>
     </select>
     <Buttons @click="selectPrePage" :disabled="activePage == 1" size="small">上一页</Buttons>
@@ -14,6 +14,6 @@
     <Buttons @click="selectNextPage" :disabled="activePage == totalPage" size="small">下一页</Buttons>
     <span class="ui-page--count">共 {{totalPage}} 页</span>
     <div class="ui-goto">
-        <input class="ui-goto--current" type="text" @keyup.enter="jump" v-model="activePage"> 页
+        <input class="ui-goto--current" type="text" @keyup.enter="jump" v-model.number="jumpNumber"> 页
     </div>
 </div>
