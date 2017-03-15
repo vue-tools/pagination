@@ -41,15 +41,13 @@ describe('vt-pagination', () => {
                 currentPage: 11
             }
         }).$mount()
+        
         expect(vm.totalPage).to.equal(100)
         expect(vm.pages).to.eql([11,12,13,14,15,16,17,18,19,20])
         
         // test int pages
         vm.activePage = 30
-        expect(vm.pages).to.eql([21,22,23,24,25,26,27,28,29,30])
-        
-        // total < pageCount
-        
+        expect(vm.pages).to.eql([21,22,23,24,25,26,27,28,29,30])        
     })
     it('current page change', () => {
         let Control = Vue.extend(Pagination)
@@ -61,9 +59,11 @@ describe('vt-pagination', () => {
                 currentPage: 11
             }
         }).$mount()
+        
         //  -1 < 1
         vm.selectCurrentPage(-1)
         expect(vm.activePage).to.equal(1)
+        
         // 300 > 100 
         vm.selectCurrentPage(300)
         expect(vm.activePage).to.equal(100)
@@ -94,6 +94,7 @@ describe('vt-pagination', () => {
                 currentPage: 11
             }
         }).$mount()
+        
         vm.selectPrePage()
         expect(vm.activePage).to.equal(10)
     })
@@ -107,6 +108,7 @@ describe('vt-pagination', () => {
                 currentPage: 11
             }
         }).$mount()
+        
         vm.pageNumber = 100
         vm.countChange()
         expect(vm.pages).to.eql([1,2,3,4,5,6,7,8,9,10])
