@@ -45,7 +45,7 @@
                 let start, i, pages, pageCount
                 i = 0
                 pages = []
-                pageCount = this.pageCount
+                pageCount = Math.min(this.pageCount, this.totalPage)
                 /* istanbul ignore if */
                 if(this.total < pageCount) {
                     pageCount = this.total
