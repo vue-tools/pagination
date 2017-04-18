@@ -29,7 +29,7 @@ describe('vt-pagination', () => {
             }
         }).$mount()
         expect(vm.activePage).to.equal(2)
-        expect(vm.pageNumber).to.equal(10)
+        expect(vm.pageNumber).to.equal(50)
     })
     it('computed', () => { 
         let Control = Vue.extend(Pagination)
@@ -42,12 +42,19 @@ describe('vt-pagination', () => {
             }
         }).$mount()
         
-        expect(vm.totalPage).to.equal(100)
-        expect(vm.pages).to.eql([11,12,13,14,15,16,17,18,19,20])
+        // pages => Math.min(totalPage, total / count)
+        expect(vm.totalPage).to.equal(20)
+        expect(vm.pages).to.deep.equal([11,12,13,14,15,16,17,18,19,20])
         
-        // test int pages
+        // test pages end 30 > 1000 / 50 
         vm.activePage = 30
-        expect(vm.pages).to.eql([21,22,23,24,25,26,27,28,29,30])        
+        expect(vm.pages).to.deep.equal([11,12,13,14,15,16,17,18,19,20]) 
+        
+        // test pages inner
+        vm.activePage = 8
+        expect(vm.pages).to.deep.equal([1,2,3,4,5,6,7,8,9,10]) 
+        
+               
     })
     it('current page change', () => {
         let Control = Vue.extend(Pagination)
@@ -64,12 +71,12 @@ describe('vt-pagination', () => {
         vm.selectCurrentPage(-1)
         expect(vm.activePage).to.equal(1)
         
-        // 300 > 100 
+        // 300 > 20 
         vm.selectCurrentPage(300)
-        expect(vm.activePage).to.equal(100)
+        expect(vm.activePage).to.equal(20)
         
-        vm.selectCurrentPage(30)
-        expect(vm.activePage).to.equal(30)
+        vm.selectCurrentPage(18)
+        expect(vm.activePage).to.equal(18)
     })
     it('next page', () => {
         let Control = Vue.extend(Pagination)

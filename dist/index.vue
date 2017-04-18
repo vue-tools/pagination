@@ -33,32 +33,30 @@
         data(){
             return {
                 activePage: this.currentPage,
-                pageNumber: this.pageCount,
+                pageNumber: this.count,
                 jumpNumber: this.currentPage
             }
         },
         computed: {
+            // 总共多少页
             totalPage(){
                 return Math.ceil(this.total / this.pageNumber)
             },
+            // 展示的页码
             pages(){
-                let start, i, pages, pageCount
+                let start, i, pages, pageCount, activePage
                 i = 0
                 pages = []
                 pageCount = Math.min(this.pageCount, this.totalPage)
-                /* istanbul ignore if */
-                if(this.total < pageCount) {
-                    pageCount = this.total
-                    start = 1
+                activePage = Math.min(this.activePage, this.totalPage)
+                
+                if(activePage % pageCount) {
+                    start = Math.floor(activePage / pageCount) * pageCount + 1
                 } else {
-                    if(this.activePage % pageCount) {
-                        start = Math.floor(this.activePage / pageCount) * pageCount + 1
-                    } else {
-                        start = this.activePage - pageCount + 1
-                    }
-
+                    start = activePage - pageCount + 1
                 }
-                while(i < pageCount) {
+                
+                while(i < pageCount && start + i <= this.totalPage) {
                     pages[i] = start + i
                     i++
                 }
