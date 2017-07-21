@@ -1,6 +1,6 @@
 {
   "name": "vt-pagination",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/vue-tools/vt-pagination"
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/vue-tools/vt-pagination#readme",
   "dependencies": {
-      "vt-button": "^1.1.0"
+    "vt-button": "^1.1.0",
+    "vue-docs": "^1.4.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",
@@ -65,7 +66,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "scripts": {
-    "prepublish": "npm run test && npm run compile",
+    "prepublish": "npm run compile",
     "codecov": "./node_modules/.bin/codecov",
     "copy": "rm -fr dist && cp -rf src dist",
     "compile": "npm run copy && node_modules/.bin/babel dist -d dist",

@@ -32,9 +32,14 @@
         },
         data(){
             return {
-                activePage: this.currentPage,
                 pageNumber: this.count,
-                jumpNumber: this.currentPage
+                jumpNumber: this.currentPage,
+                activePage: this.currentPage
+            }
+        },
+        watch: {
+            currentPage(p) {
+                this.selectCurrentPage(p)      
             }
         },
         computed: {
@@ -81,6 +86,7 @@
             },
             countChange(){
                 this._syncPage(1)
+                /* istanbul ignore next */
                 this.$emit('count-change', this.pageNumber)
             },
             jump(){
@@ -88,7 +94,6 @@
                 this.selectCurrentPage(this.jumpNumber)
             },
             _syncPage(page){
-                 /* istanbul ignore next */
                 this.activePage = page
                 this.jumpNumber = page
             }
