@@ -4,6 +4,7 @@ module.exports = {
     port: 9999,
     webpack: {
         resolve: {
+            extensions: ['', '.vue'],
             alias: {
                 'vt-pagination': path.resolve(__dirname, 'src')
             }

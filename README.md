@@ -65,7 +65,6 @@ props:
     type: Array
     default: 10, 20, 50, 100
     description: 每页条数配置参数
-    
 events:
   current-change:
     description: 点击当前页码，第一个参数： 当前页码，第二个参数： 上一个页码

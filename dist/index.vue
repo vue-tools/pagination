@@ -19,7 +19,7 @@
                 type: Number,
                 default: 10
             },
-            currentPage: { // 当前页面
+            currentPage: { // 当前页码
                 type: Number,
                 default: 1
             },
@@ -33,8 +33,8 @@
         data(){
             return {
                 pageNumber: this.count,
-                jumpNumber: this.currentPage,
-                activePage: this.currentPage
+                jumpNumber: this.currentPage * 1,
+                activePage: this.currentPage * 1
             }
         },
         watch: {
@@ -75,7 +75,7 @@
                 } else if(page < 1){
                     page = 1
                 }
-                this.$emit('current-change', page, this.activePage)
+                this.$emit('current-change', page * 1, this.activePage * 1)
                 this._syncPage(page)
             },
             selectNextPage(){
